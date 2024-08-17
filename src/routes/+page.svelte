@@ -1,2 +1,26 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+  import Input from '$lib/components/ui/input/input.svelte';
+  import type { Content } from '$lib/types';
+  import type { PageData } from './$types';
+
+  export let data: PageData;
+  let questions: Content[] = [];
+
+  let search: string = '';
+
+  $: questions = data.content.filter(q => q.text.startsWith(search));
+</script>
+
+<div class="flex flex-col gap-4">
+  <Input placeholder="Напиши вопрос" bind:value={search} />
+  {#each questions as question}
+    <div class="flex max-w-xl flex-col gap-2">
+      <p class="probe text-lg">{@html question.text}</p>
+      {#each question.choices as choice}
+        <span class="probe {choice.correct ? 'text-green-500' : 'text-red-500'}">
+          {@html choice.text}
+        </span>
+      {/each}
+    </div>
+  {/each}
+</div>
