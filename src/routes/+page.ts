@@ -1,7 +1,8 @@
-import { questions } from "$lib/game/questions"
-import type { Questions } from "$lib/types";
+import { questions } from '$lib/game/questions';
+import { finalQuestions } from '$lib/game/final';
+import type { PageLoad } from './$types';
 
-/** @type {import('./$types').PageLoad} */
-export function load(): Questions {
-	return questions;
-}
+export const load: PageLoad = () => ({
+  questions,
+  finalQuestions
+});

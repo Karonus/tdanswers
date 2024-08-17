@@ -4,18 +4,19 @@
   import type { PageData } from './$types';
 
   export let data: PageData;
-  let questions: Content[] = [];
 
-  let search: string = '';
+  let questions: Content[] = [],
+    search: string = '';
 
-  $: questions = data.content.filter((q: Content) =>
-    q.text.toLowerCase().startsWith(search.toLowerCase())
-  );
+  $: if (search)
+    questions = [...data.questions.content, ...data.finalQuestions.content].filter((q) =>
+      q.text.toLowerCase().startsWith(search.toLowerCase())
+    );
 </script>
 
 <div class="flex flex-col gap-6">
   <Input placeholder="Напиши вопрос" bind:value={search} />
-  {#each questions as question}
+  {#each questions as question (question.id)}
     <div class="flex max-w-xl flex-col gap-2">
       <p class="probe text-lg">{@html question.text}</p>
       {#each question.choices as choice}

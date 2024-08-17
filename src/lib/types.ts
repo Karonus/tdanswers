@@ -19,3 +19,23 @@ export interface Choice {
 	correct?: boolean;
 	text: string;
 }
+
+export interface FinalQuestions {
+  episodeid: number
+  content: FinalContent[]
+}
+
+export interface FinalContent {
+  x: boolean
+  id: number
+  text: string
+  choices: FinalChoice[]
+  us: boolean
+}
+
+export interface FinalChoice {
+  difficulty: number
+  correct: boolean
+  text: string
+}
+
