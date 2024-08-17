@@ -13,7 +13,7 @@
   );
 </script>
 
-<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-6">
   <Input placeholder="Напиши вопрос" bind:value={search} />
   {#each questions as question}
     <div class="flex max-w-xl flex-col gap-2">
@@ -24,5 +24,6 @@
         </span>
       {/each}
     </div>
+    <hr />
   {/each}
 </div>
