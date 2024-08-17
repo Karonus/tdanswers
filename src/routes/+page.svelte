@@ -8,7 +8,9 @@
 
   let search: string = '';
 
-  $: questions = data.content.filter(q => q.text.startsWith(search));
+  $: questions = data.content.filter((q: Content) =>
+    q.text.toLowerCase().startsWith(search.toLowerCase())
+  );
 </script>
 
 <div class="flex flex-col gap-4">
