@@ -8,10 +8,12 @@
   let questions: Content[] = [],
     search: string = '';
 
-  $: if (search)
-    questions = [...data.questions.content, ...data.finalQuestions.content].filter((q) =>
-      q.text.toLowerCase().startsWith(search.toLowerCase())
+  const filterQuestions = (query: string) =>
+    [...data.questions.content, ...data.finalQuestions.content].filter((q) =>
+      q.text.toLowerCase().startsWith(query.toLowerCase())
     );
+
+  $: if (search) questions = filterQuestions(search);
 </script>
 
 <div class="flex flex-col gap-6">
